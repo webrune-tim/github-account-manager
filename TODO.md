@@ -10,10 +10,10 @@ This tool has the power to permanently delete data. Use with caution. The develo
 # VoidRepo Development Roadmap
 
 ## Phase 1: Foundation 🏗️
-- [ ] Initialize project using `vp create create-next-app`.
-- [ ] Configure `tailwind.config.ts` for strict Dark Mode aesthetic.
-- [ ] Set up **Auth.js** with GitHub Provider (Scopes: `repo`, `delete_repo`).
-- [ ] Initialize **Octokit** client in `lib/octokit.ts`.
+- [x] Initialize project using `vp create create-next-app`.
+- [x] Configure `tailwind.config.ts` for strict Dark Mode aesthetic.
+- [x] Set up **Auth.js** with GitHub Provider (Scopes: `repo`, `delete_repo`).
+- [x] Initialize **Octokit** client in `lib/octokit.ts`.
 
 ## Phase 2: Core Data Flow 🌊
 - [ ] Create API Route `app/api/repos/route.ts` to fetch paginated user repos.
