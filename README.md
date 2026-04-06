@@ -24,8 +24,10 @@ A high-performance, dark-aesthetic GitHub repository management tool built with 
 
 ```bash
 gh repo clone webrune-tim/github-account-manager
-pnpm install (or vp install) [Vite+](https://viteplus.dev/)
+pnpm install (or vp install)
 pnpm dev (or vp dev)
 ```
+
+[Vite+](https://viteplus.dev/)
 
 
