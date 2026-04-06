@@ -16,7 +16,7 @@ You are an expert Senior Frontend Engineer and Systems Architect assisting with 
 - **API:** Octokit.js (Official GitHub SDK).
 - **Styling:** Tailwind CSS + Shadcn UI (Dark Theme).
 - **Testing:** Vitest + React Testing Library + MSW (Mock Service Worker).
-- **Icons:** ALWAYS Lucide Version 1 https://lucide.dev/guide/version-1 (https://lucide.dev/guide/version-1), never HugeIcons
+- **Icons:** ALWAYS Lucide Version 1 (https://lucide.dev/icons), never HugeIcons
 
 ## 🧪 Testing Strategy
 - **Unit Tests:** For stores (`zustand`) and utility functions using Vitest.
