@@ -12,7 +12,7 @@ A high-performance, dark-aesthetic GitHub repository management tool built with 
 
 ## 🛠 Tech Stack
 - **Framework:** Next.js 15+ (App Router)
-- **Tooling:** [Vite+](https://viteplus.dev/) ($vp$)
+- **Tooling:** [Vite+](https://viteplus.dev/) (vp)
 - **Auth:** Auth.js (GitHub OAuth)
 - **SDK:** Octokit.js
 - **State:** TanStack Query & Zustand
