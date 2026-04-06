@@ -50,7 +50,7 @@ export default async function Home() {
 
       <footer className="p-8 border-t border-zinc-900 flex flex-col sm:flex-row justify-between items-center gap-4">
         <div className="text-xs text-zinc-600 font-mono">
-          &copy; 2024 VOIDZERO // VOIDREPO
+          &copy; 2026 VOIDZERO // VOIDREPO
         </div>
         <div className="flex gap-6 text-xs font-bold uppercase tracking-widest text-zinc-400">
           <a href="#" className="hover:text-white transition-colors">Docs</a>
