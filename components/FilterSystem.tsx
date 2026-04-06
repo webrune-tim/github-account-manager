@@ -9,7 +9,11 @@ import {
   SelectTrigger, 
   SelectValue 
 } from "@/components/ui/select";
-import { Search01Icon, CodeIcon } from "@hugeicons/react";
+import { 
+  LucideProvider,
+  Search,
+  Code
+} from "lucide-react";
 
 export function FilterSystem() {
   const { search, language, setSearch, setLanguage } = useFilterStore();
@@ -17,10 +21,11 @@ export function FilterSystem() {
   return (
     <div className="flex flex-col sm:flex-row gap-4 p-4 bg-zinc-950/50 border border-zinc-800 rounded-xl backdrop-blur-sm">
       <div className="relative flex-1">
-        <Search01Icon 
-          size={18} 
-          className="absolute left-3 top-1/2 -translate-y-1/2 text-zinc-500" 
-        />
+        <div className="absolute left-3 top-1/2 -translate-y-1/2">
+          <LucideProvider size={18} strokeWidth={2}>
+            <Search className="text-zinc-500" />
+          </LucideProvider>
+        </div>
         <Input 
           type="text" 
           placeholder="Search repositories by name..." 
@@ -34,7 +39,9 @@ export function FilterSystem() {
         <Select value={language || "all"} onValueChange={(val) => setLanguage(val === "all" ? "" : val)}>
           <SelectTrigger className="bg-zinc-900 border-zinc-800 focus:ring-blue-500">
             <div className="flex items-center gap-2">
-              <CodeIcon size={16} className="text-zinc-500" />
+              <LucideProvider size={16} strokeWidth={2}>
+                <Code className="text-zinc-500" />
+              </LucideProvider>
               <SelectValue placeholder="Language" />
             </div>
           </SelectTrigger>

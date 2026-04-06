@@ -5,11 +5,12 @@ import { FilterSystem } from "@/components/FilterSystem";
 import { BulkActionBar } from "@/components/BulkActionBar";
 import { Button } from "@/components/ui/button";
 import { 
-  Logout01Icon, 
-  UserCircleIcon, 
-  Repository01Icon,
-  DashboardCircleIcon
-} from "@hugeicons/react";
+  LucideProvider,
+  LogOut, 
+  UserCircle, 
+  Library,
+  LayoutDashboard
+} from "lucide-react";
 
 export default async function DashboardPage() {
   const session = await auth();
@@ -25,7 +26,9 @@ export default async function DashboardPage() {
         <div className="flex items-center gap-6">
           <div className="flex items-center gap-2">
             <div className="bg-white p-1 rounded">
-              <Repository01Icon size={20} className="text-black" />
+              <LucideProvider size={20} strokeWidth={2}>
+                <Library className="text-black" />
+              </LucideProvider>
             </div>
             <span className="text-lg font-bold tracking-tighter uppercase hidden sm:inline">VoidRepo</span>
           </div>
@@ -33,14 +36,18 @@ export default async function DashboardPage() {
           <div className="h-4 w-[1px] bg-zinc-800" />
           
           <div className="flex items-center gap-2 text-zinc-400">
-            <DashboardCircleIcon size={18} />
+            <LucideProvider size={18} strokeWidth={2}>
+              <LayoutDashboard />
+            </LucideProvider>
             <span className="text-xs font-bold uppercase tracking-widest">Dashboard</span>
           </div>
         </div>
 
         <div className="flex items-center gap-4">
           <div className="flex items-center gap-2 px-3 py-1.5 bg-zinc-900 border border-zinc-800 rounded-full">
-            <UserCircleIcon size={16} className="text-zinc-500" />
+            <LucideProvider size={16} strokeWidth={2}>
+              <UserCircle className="text-zinc-500" />
+            </LucideProvider>
             <span className="text-xs font-bold tracking-tight">{session.user?.name || session.user?.email}</span>
           </div>
           
@@ -49,7 +56,9 @@ export default async function DashboardPage() {
             await signOut();
           }}>
             <Button variant="ghost" size="icon" className="text-zinc-500 hover:text-red-400 transition-colors h-9 w-9 rounded-full">
-              <Logout01Icon size={18} />
+              <LucideProvider size={18} strokeWidth={2}>
+                <LogOut />
+              </LucideProvider>
             </Button>
           </form>
         </div>

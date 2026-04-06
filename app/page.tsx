@@ -1,7 +1,7 @@
 import { auth } from "@/auth";
 import { redirect } from "next/navigation";
 import { GitHubLoginButton } from "@/components/GitHubLoginButton";
-import { Repository01Icon } from "@hugeicons/react";
+import { LucideProvider, Library } from "lucide-react";
 
 export default async function Home() {
   const session = await auth();
@@ -15,7 +15,9 @@ export default async function Home() {
       <nav className="p-8 border-b border-zinc-900 flex justify-between items-center">
         <div className="flex items-center gap-2">
           <div className="bg-white p-1 rounded">
-            <Repository01Icon size={24} className="text-black" />
+            <LucideProvider size={24} strokeWidth={2}>
+              <Library className="text-black" />
+            </LucideProvider>
           </div>
           <span className="text-xl font-bold tracking-tighter uppercase">VoidRepo</span>
         </div>

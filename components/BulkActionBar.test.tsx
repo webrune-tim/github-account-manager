@@ -10,12 +10,17 @@ vi.mock("@/store/useSelectionStore", () => ({
 }));
 
 // Mock icons to avoid "Element type is invalid" if they are not resolved
-vi.mock("@hugeicons/react", () => ({
-  ArchiveIcon: () => <div data-testid="archive-icon" />,
-  Delete02Icon: () => <div data-testid="delete-icon" />,
-  ViewIcon: () => <div data-testid="view-icon" />,
-  Cancel01Icon: () => <div data-testid="cancel-icon" />,
-}));
+vi.mock("lucide-react", async () => {
+  const actual = await vi.importActual("lucide-react");
+  return {
+    ...actual,
+    Archive: () => <div data-testid="archive-icon" />,
+    Trash2: () => <div data-testid="delete-icon" />,
+    Eye: () => <div data-testid="view-icon" />,
+    X: () => <div data-testid="cancel-icon" />,
+    LucideProvider: ({ children }: any) => children,
+  };
+});
 
 describe("BulkActionBar", () => {
   const clearSelection = vi.fn();

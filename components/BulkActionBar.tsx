@@ -3,11 +3,12 @@
 import { useSelectionStore } from "@/store/useSelectionStore";
 import { Button } from "@/components/ui/button";
 import { 
-  ArchiveIcon, 
-  Delete02Icon, 
-  ViewIcon, 
-  Cancel01Icon 
-} from "@hugeicons/react";
+  LucideProvider,
+  Archive, 
+  Trash2, 
+  Eye, 
+  X 
+} from "lucide-react";
 
 export function BulkActionBar() {
   const { selectedRepoIds, clearSelection } = useSelectionStore();
@@ -32,7 +33,9 @@ export function BulkActionBar() {
           className="text-zinc-400 hover:text-white hover:bg-zinc-800 rounded-full gap-2"
           onClick={() => console.log("Bulk visibility change", selectedRepoIds)}
         >
-          <ViewIcon size={16} />
+          <LucideProvider size={16} strokeWidth={2}>
+            <Eye />
+          </LucideProvider>
           <span className="text-xs font-bold uppercase tracking-wider hidden sm:inline">Visibility</span>
         </Button>
         <Button 
@@ -41,7 +44,9 @@ export function BulkActionBar() {
           className="text-zinc-400 hover:text-white hover:bg-zinc-800 rounded-full gap-2"
           onClick={() => console.log("Bulk archive", selectedRepoIds)}
         >
-          <ArchiveIcon size={16} />
+          <LucideProvider size={16} strokeWidth={2}>
+            <Archive />
+          </LucideProvider>
           <span className="text-xs font-bold uppercase tracking-wider hidden sm:inline">Archive</span>
         </Button>
         <Button 
@@ -50,7 +55,9 @@ export function BulkActionBar() {
           className="text-red-400 hover:text-red-300 hover:bg-red-950/30 rounded-full gap-2"
           onClick={() => console.log("Bulk delete", selectedRepoIds)}
         >
-          <Delete02Icon size={16} />
+          <LucideProvider size={16} strokeWidth={2}>
+            <Trash2 />
+          </LucideProvider>
           <span className="text-xs font-bold uppercase tracking-wider hidden sm:inline">Delete</span>
         </Button>
       </div>
@@ -63,7 +70,9 @@ export function BulkActionBar() {
           onClick={clearSelection}
         >
           <span className="sr-only">Clear selection</span>
-          <Cancel01Icon size={18} />
+          <LucideProvider size={18} strokeWidth={2}>
+            <X />
+          </LucideProvider>
         </Button>
       </div>
     </div>
