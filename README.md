@@ -22,8 +22,10 @@ A high-performance, dark-aesthetic GitHub repository management tool built with 
 
 ### 1. Clone & Install
 '''bash
+
 gh repo clone webrune-tim/github-account-manager
 pnpm install (or vp install)
 pnpm dev (or vp dev)
+
 '''
 
