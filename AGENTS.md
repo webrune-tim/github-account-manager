@@ -7,6 +7,7 @@ You are an expert Senior Frontend Engineer and Systems Architect assisting with 
 
 ## 🛠 Tech Stack (Strict Adherence)
 - **Tooling:** Vite+ (`vp` binary) by VoidZero.
+- ALWAYS USE `vp` binary, DO NOT USE `pnpm` binary
 - **Framework:** Next.js 15+ (App Router).
 - **Language:** TypeScript (Strict Mode).
 - **Auth:** Auth.js (GitHub Provider).
@@ -14,6 +15,14 @@ You are an expert Senior Frontend Engineer and Systems Architect assisting with 
   - Client State: Zustand (for multi-selection and UI state).
 - **API:** Octokit.js (Official GitHub SDK).
 - **Styling:** Tailwind CSS + Shadcn UI (Dark Theme).
+- **Testing:** Vitest + React Testing Library + MSW (Mock Service Worker).
+- **Icons:** ALWAYS Iconify icons, never HugeIcons
+
+## 🧪 Testing Strategy
+- **Unit Tests:** For stores (`zustand`) and utility functions using Vitest.
+- **Integration Tests:** For hooks (`useGitHubRepos`) and UI components using RTL + Vitest.
+- **API Mocking:** Use MSW to mock GitHub API responses in tests.
+- **Standards:** All new features must include a corresponding `.test.tsx` or `.test.ts` file.
 
 ## 🎨 Design System & Aesthetic
 - **Aesthetic:** Minimalist, high-contrast, "Brutalist" dark theme.
@@ -29,8 +38,11 @@ You are an expert Senior Frontend Engineer and Systems Architect assisting with 
 ## 📁 Key File Map
 - `lib/octokit.ts`: Centralized GitHub client.
 - `store/useSelectionStore.ts`: Tracks which `repoIds` are currently selected.
+- `store/useFilterStore.ts`: Manages search and language filtering state.
 - `hooks/useGitHubRepos.ts`: Handles paginated fetching from the GitHub API.
 - `app/dashboard/page.tsx`: The primary interface for repo management.
+- `app/api/repos/route.ts`: Proxy for GitHub API repository fetching.
+- `vitest.setup.ts`: Vitest configuration and global mocks.
 
 ## 🚫 Avoid
 - Do not suggest standard JavaScript; always use TypeScript.

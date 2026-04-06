@@ -1,65 +1,69 @@
-import Image from "next/image";
+import { auth } from "@/auth";
+import { redirect } from "next/navigation";
+import { GitHubLoginButton } from "@/components/GitHubLoginButton";
+import { Repository01Icon } from "@hugeicons/react";
 
-export default function Home() {
+export default async function Home() {
+  const session = await auth();
+
+  if (session) {
+    redirect("/dashboard");
+  }
+
   return (
-    <div className="flex flex-col flex-1 items-center justify-center bg-zinc-50 font-sans dark:bg-black">
-      <main className="flex flex-1 w-full max-w-3xl flex-col items-center justify-between py-32 px-16 bg-white dark:bg-black sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={100}
-          height={20}
-          priority
-        />
-        <div className="flex flex-col items-center gap-6 text-center sm:items-start sm:text-left">
-          <h1 className="max-w-xs text-3xl font-semibold leading-10 tracking-tight text-black dark:text-zinc-50">
-            To get started, edit the page.tsx file.
+    <div className="flex flex-col min-h-screen bg-black text-white selection:bg-white selection:text-black">
+      <nav className="p-8 border-b border-zinc-900 flex justify-between items-center">
+        <div className="flex items-center gap-2">
+          <div className="bg-white p-1 rounded">
+            <Repository01Icon size={24} className="text-black" />
+          </div>
+          <span className="text-xl font-bold tracking-tighter uppercase">VoidRepo</span>
+        </div>
+        <div className="text-sm font-medium text-zinc-500 hover:text-white transition-colors">
+          v0.1.0-alpha
+        </div>
+      </nav>
+
+      <main className="flex-1 flex flex-col items-center justify-center p-8 max-w-4xl mx-auto text-center gap-12">
+        <div className="space-y-6">
+          <h1 className="text-6xl sm:text-8xl font-black tracking-tightest leading-none uppercase">
+            Bulk Repo <br/>
+            <span className="text-zinc-800 outline-text">Management</span>
           </h1>
-          <p className="max-w-md text-lg leading-8 text-zinc-600 dark:text-zinc-400">
-            Looking for a starting point or more instructions? Head over to{" "}
-            <a
-              href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Templates
-            </a>{" "}
-            or the{" "}
-            <a
-              href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Learning
-            </a>{" "}
-            center.
+          <p className="text-xl text-zinc-400 max-w-lg mx-auto font-medium">
+            A high-performance dashboard for bulk-managing GitHub repositories. 
+            Visibility, archiving, and deletion at scale.
           </p>
         </div>
-        <div className="flex flex-col gap-4 text-base font-medium sm:flex-row">
-          <a
-            className="flex h-12 w-full items-center justify-center gap-2 rounded-full bg-foreground px-5 text-background transition-colors hover:bg-[#383838] dark:hover:bg-[#ccc] md:w-[158px]"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={16}
-              height={16}
-            />
-            Deploy Now
-          </a>
-          <a
-            className="flex h-12 w-full items-center justify-center rounded-full border border-solid border-black/[.08] px-5 transition-colors hover:border-transparent hover:bg-black/[.04] dark:border-white/[.145] dark:hover:bg-[#1a1a1a] md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Documentation
-          </a>
+
+        <div className="flex flex-col gap-6 items-center">
+          <GitHubLoginButton />
+          <div className="flex gap-8 text-xs font-bold uppercase tracking-widest text-zinc-600">
+            <span>Octokit Powered</span>
+            <span>Vite+ Speed</span>
+            <span>Auth.js Secure</span>
+          </div>
         </div>
       </main>
+
+      <footer className="p-8 border-t border-zinc-900 flex flex-col sm:flex-row justify-between items-center gap-4">
+        <div className="text-xs text-zinc-600 font-mono">
+          &copy; 2024 VOIDZERO // VOIDREPO
+        </div>
+        <div className="flex gap-6 text-xs font-bold uppercase tracking-widest text-zinc-400">
+          <a href="#" className="hover:text-white transition-colors">Docs</a>
+          <a href="#" className="hover:text-white transition-colors">GitHub</a>
+          <a href="#" className="hover:text-white transition-colors">Privacy</a>
+        </div>
+      </footer>
+
+      <style dangerouslySetInnerHTML={{ __html: `
+        .tracking-tightest { letter-spacing: -0.05em; }
+        .outline-text {
+          -webkit-text-stroke: 1px #27272a;
+          color: transparent;
+        }
+      `}} />
     </div>
   );
 }

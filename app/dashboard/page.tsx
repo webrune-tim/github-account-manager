@@ -1,8 +1,15 @@
-import { auth } from "@/auth";
+import { auth, signOut } from "@/auth";
 import { redirect } from "next/navigation";
 import { RepoTable } from "@/components/RepoTable";
 import { FilterSystem } from "@/components/FilterSystem";
 import { BulkActionBar } from "@/components/BulkActionBar";
+import { Button } from "@/components/ui/button";
+import { 
+  Logout01Icon, 
+  UserCircleIcon, 
+  Repository01Icon,
+  DashboardCircleIcon
+} from "@hugeicons/react";
 
 export default async function DashboardPage() {
   const session = await auth();
@@ -12,18 +19,64 @@ export default async function DashboardPage() {
   }
 
   return (
-    <div className="flex min-h-screen flex-col bg-black text-white p-8">
-      <header className="mb-8">
-        <h1 className="text-3xl font-bold">VoidRepo Dashboard</h1>
-        <p className="text-zinc-400">Manage repositories for {session.user?.name || session.user?.email}</p>
-      </header>
+    <div className="flex min-h-screen flex-col bg-black text-white selection:bg-white selection:text-black">
+      {/* Navigation */}
+      <nav className="p-6 border-b border-zinc-900 flex justify-between items-center sticky top-0 bg-black/80 backdrop-blur-md z-40">
+        <div className="flex items-center gap-6">
+          <div className="flex items-center gap-2">
+            <div className="bg-white p-1 rounded">
+              <Repository01Icon size={20} className="text-black" />
+            </div>
+            <span className="text-lg font-bold tracking-tighter uppercase hidden sm:inline">VoidRepo</span>
+          </div>
+          
+          <div className="h-4 w-[1px] bg-zinc-800" />
+          
+          <div className="flex items-center gap-2 text-zinc-400">
+            <DashboardCircleIcon size={18} />
+            <span className="text-xs font-bold uppercase tracking-widest">Dashboard</span>
+          </div>
+        </div>
 
-      <main className="flex flex-col gap-6">
-        <FilterSystem />
-        <RepoTable />
+        <div className="flex items-center gap-4">
+          <div className="flex items-center gap-2 px-3 py-1.5 bg-zinc-900 border border-zinc-800 rounded-full">
+            <UserCircleIcon size={16} className="text-zinc-500" />
+            <span className="text-xs font-bold tracking-tight">{session.user?.name || session.user?.email}</span>
+          </div>
+          
+          <form action={async () => {
+            "use server";
+            await signOut();
+          }}>
+            <Button variant="ghost" size="icon" className="text-zinc-500 hover:text-red-400 transition-colors h-9 w-9 rounded-full">
+              <Logout01Icon size={18} />
+            </Button>
+          </form>
+        </div>
+      </nav>
+
+      {/* Main Content */}
+      <main className="flex-1 p-8 max-w-7xl mx-auto w-full flex flex-col gap-8">
+        <header className="flex flex-col gap-2">
+          <h2 className="text-3xl font-black uppercase tracking-tight">Repository Control</h2>
+          <p className="text-zinc-500 font-medium">Bulk management and filtering of your GitHub repositories.</p>
+        </header>
+
+        <section className="flex flex-col gap-6">
+          <FilterSystem />
+          <RepoTable />
+        </section>
       </main>
 
+      {/* Floating Action Bar */}
       <BulkActionBar />
+
+      <footer className="p-8 mt-auto border-t border-zinc-900">
+        <div className="flex justify-between items-center text-[10px] font-bold uppercase tracking-widest text-zinc-700">
+          <div>System: Operational</div>
+          <div>&copy; 2024 VoidZero</div>
+        </div>
+      </footer>
     </div>
   );
 }
